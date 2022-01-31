@@ -24,11 +24,12 @@ def main(vin: float, vout: float, e_value: str) -> None:
         print('{} is not in E values list'.format(e_value))
         return
     r1, r2 = find_closet(vin, vout, e_value=e)
-    print('Closest resistor values for Vin: {} and Vout: {} is'.format(vin, vout))
+    print('Closest resistor values for Vin: {}V and Vout: {}V is'.format(vin, vout))
     print('R1: {}'.format(r1))
     print('R1: {}'.format(r2))
     print(
-        'With error {}V, {}%'.format(vout - comm.divider(r1, r2, vin), (comm.divider(r1, r2, vin) - vout) / vout * 100))
+        'With error {:4.2}V, {:4.2}%'.format(vout - comm.divider(r1, r2, vin),
+                                             (comm.divider(r1, r2, vin) - vout) / vout * 100))
 
 
 if __name__ == '__main__':
@@ -38,4 +39,4 @@ if __name__ == '__main__':
     parser.add_argument('-e', '--e', type=str, default='E24', help='Either E3, E6, E12, E24, E48, R96 `extend`')
     parser.parse_args()
     args = parser.parse_args()
-    main(args.vin, args.vout, args.set)
+    main(args.vin, args.vout, args.e)

@@ -24,7 +24,7 @@ def main(vin: float, vout: float, e_value: str) -> None:
         print('{} is not in E values list'.format(e_value))
         return
     r1, r2 = find_list(vin, vout, e_value=e)
-    print('Closest resistor values for Vin: {} and Vout: {} are'.format(vin, vout))
+    print('Closest resistor values for Vin: {}V and Vout: {}V are'.format(vin, vout))
     for R1, R2 in zip(r1, r2):
         print('R1: {} \tR2: {} \tError: {:4.2}V  \t{:4.2}%'.format(R1, R2, vout - comm.divider(R1, R2, vin),
                                                                    (comm.divider(R1, R2, vin) - vout) / vout * 100))
