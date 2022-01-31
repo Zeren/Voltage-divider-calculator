@@ -1,4 +1,4 @@
-# Voltage-divider-calculator
+# Voltage divider calculator
 
 Install from github:
 ```commandline
