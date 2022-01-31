@@ -1,6 +1,11 @@
 # Voltage-divider-calculator
 
-## TODO
+Install from github:
+```powershell
+pip install --upgrade https://github.com/Zeren/Voltage-divider-calculator/tarball/master
+```
 
-- Calculate list of closest values
-- Create exe
+Find voltage divider for 5V input voltage and 3.3V output voltage.
+```powershell
+python -m .\voltdiv\finddiv 5 3.3
+```

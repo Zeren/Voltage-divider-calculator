@@ -1,6 +1,4 @@
 import numpy as np
-from typing import List, Tuple, Any
-import argparse
 
 E3 = np.array([1.0, 2.2, 4.7])
 
@@ -32,45 +30,8 @@ Edict = {'E3': E3,
          'E24': E24,
          'E48': E48,
          'E96': E96,
-         'extend': np.append(E24, E96)}
+         'EXTEND': np.append(E24, E96)}
 
 
 def divider(r1: float, r2: float, vin: float) -> float:
     return vin * r2 / (r1 + r2)
-
-
-def find_closet(vin: float, vout: float, e_value: np.ndarray = E24) -> Tuple:
-    closest_r1 = None
-    closest_r2 = None
-    closest_vout = 0
-    for r1 in e_value:
-        for r2 in e_value:
-            if np.abs(divider(r1, r2, vin) - vout) < np.abs(closest_vout - vout):
-                closest_vout = divider(r1, r2, vin)
-                closest_r1 = r1
-                closest_r2 = r2
-    return closest_r1, closest_r2
-
-
-def main(vin: float, vout: float, e_value: str) -> None:
-    try:
-        e = Edict[e_value]
-    except KeyError:
-        print('{} is not in E values list'.format(e_value))
-        return
-    r1, r2 = find_closet(vin, vout, e)
-    print('Closest resistor values for Vin: {} and Vout: {} is'.format(vin, vout))
-    print('R1: {}'.format(r1))
-    print('R1: {}'.format(r2))
-    print('With error {}V, {}%'.format(vout - divider(r1, r2, vin), (divider(r1, r2, vin) - vout) / vout * 100))
-
-
-if __name__ == '__main__':
-    # print(find_closet(5, 3.3, e_value=np.append(E24, E96)))
-    parser = argparse.ArgumentParser()
-    parser.add_argument('vin', type=float, help="Input voltage")
-    parser.add_argument('vout', type=float, help="Output voltage")
-    parser.add_argument('--set', type=str, default='E24', help='Either `E12` or `E24`, `extend`')
-    parser.parse_args()
-    args = parser.parse_args()
-    main(args.vin, args.vout, args.set)
