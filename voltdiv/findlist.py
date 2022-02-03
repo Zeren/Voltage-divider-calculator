@@ -8,6 +8,7 @@ def find_list(vin: float,
               vout: float,
               n_list: int = 5,
               e_value: np.ndarray = comm.E24) -> Tuple[np.ndarray, np.ndarray]:
+    e_value = np.append(e_value, e_value * 10)
     divider_matrix = np.array([[r2 / (r1 + r2) for r2 in e_value] for r1 in e_value])
     diff_matrix = np.abs(divider_matrix * vin - vout)
     index = np.argsort(diff_matrix.flatten())
