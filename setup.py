@@ -2,7 +2,7 @@ from setuptools import setup
 
 setup(
     name='Voltage-divider-calculator',
-    version='1.1',
+    version='1.2',
     packages=['voltdiv'],
     url='https://github.com/Zeren/Voltage-divider-calculator',
     license='Creative Commons Zero v1.0 Universal',
