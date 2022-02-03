@@ -24,3 +24,7 @@ R1: 4.3         R2: 2.4         Error: 0.009V   -0.5%
 R1: 1.8         R2: 1.0         Error: 0.014V   -0.79%
 R1: 3.6         R2: 2.0         Error: 0.014V   -0.79%
 ```
+
+## TODO
+
+- Can not find value out of one decade
