@@ -1,10 +1,9 @@
 import numpy as np
-from typing import Tuple
 import argparse
 import voltdiv.common as comm
 
 
-def find_closet(vin: float, vout: float, e_value: np.ndarray = comm.E24) -> Tuple[float, float]:
+def find_closet(vin: float, vout: float, e_value: np.ndarray = comm.E24) -> tuple[float, float]:
     closest_r1 = None
     closest_r2 = None
     closest_vout = 0
@@ -32,7 +31,7 @@ def divider(vin: float, vout: float, e_value: str) -> None:
                                              (comm.divider(r1, r2, vin) - vout) / vout * 100))
 
 
-def main():
+def main() -> None:
     parser = argparse.ArgumentParser()
     parser.add_argument('vin', type=float, help="Input voltage")
     parser.add_argument('vout', type=float, help="Output voltage")

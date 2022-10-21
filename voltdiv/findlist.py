@@ -30,7 +30,7 @@ def divider(vin: float, vout: float, e_value: str = 'E24') -> None:
                                                                    (comm.divider(R1, R2, vin) - vout) / vout * 100))
 
 
-def main():
+def main() -> None:
     parser = argparse.ArgumentParser()
     parser.add_argument('vin', type=float, help="Input voltage")
     parser.add_argument('vout', type=float, help="Output voltage")
