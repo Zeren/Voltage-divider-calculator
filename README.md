@@ -39,3 +39,23 @@ R1: 11.0        R2: 1.5         Error:  0.0V     0.0%
 R1: 11.0        R2: 1.5         Error:  0.0V     0.0%
 R1: 12.1        R2: 1.65        Error:  0.0V     0.0%
 ```
+
+## E series options
+
+```powershell
+divider.exe -h
+```
+Output:
+```text
+usage: divider [-h] [-e E] vin vout
+
+positional arguments:
+  vin          Input voltage
+  vout         Output voltage
+
+options:
+  -h, --help   show this help message and exit
+  -e E, --e E  Either E3, E6, E12, E24, E48, R96 `extend`
+ ```
+
+Where extend is combination of E24 and E96.
