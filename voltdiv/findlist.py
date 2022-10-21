@@ -1,5 +1,4 @@
 import numpy as np
-from typing import Tuple
 import argparse
 import voltdiv.common as comm
 
@@ -7,7 +6,7 @@ import voltdiv.common as comm
 def find_list(vin: float,
               vout: float,
               n_list: int = 5,
-              e_value: np.ndarray = comm.E24) -> Tuple[np.ndarray, np.ndarray]:
+              e_value: np.ndarray = comm.E24) -> tuple[np.ndarray, np.ndarray]:
     e_value = np.append(e_value, e_value * 10)
     divider_matrix = np.array([[r2 / (r1 + r2) for r2 in e_value] for r1 in e_value])
     diff_matrix = np.abs(divider_matrix * vin - vout)
@@ -18,7 +17,7 @@ def find_list(vin: float,
     return r1, r2
 
 
-def main(vin: float, vout: float, e_value: str) -> None:
+def divider(vin: float, vout: float, e_value: str = 'E24') -> None:
     try:
         e = comm.Edict[e_value.upper()]
     except KeyError:
@@ -31,11 +30,14 @@ def main(vin: float, vout: float, e_value: str) -> None:
                                                                    (comm.divider(R1, R2, vin) - vout) / vout * 100))
 
 
-if __name__ == '__main__':
+def main():
     parser = argparse.ArgumentParser()
     parser.add_argument('vin', type=float, help="Input voltage")
     parser.add_argument('vout', type=float, help="Output voltage")
     parser.add_argument('-e', '--e', type=str, default='E24', help='Either E3, E6, E12, E24, E48, R96 `extend`')
     parser.parse_args()
     args = parser.parse_args()
-    main(args.vin, args.vout, args.e)
+    divider(args.vin, args.vout, args.e)
+
+if __name__ == '__main__':
+    main()
